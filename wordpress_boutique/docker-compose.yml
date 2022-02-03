@@ -14,14 +14,6 @@ services:
       MYSQL_USER: $DB_USER
       MYSQL_PASSWORD: $DB_PASSWORD
 
-  cp:
-    build: composer
-    container_name: ${COMPOSER_CONTAINER}
-    volumes:
-      - /srv/www/${VIRTUAL_HOST}/wp_content:/app/wp-content
-    command: composer install
-
-
   wp:
     container_name: $WP_CONTAINER
     build: .
@@ -43,7 +35,14 @@ services:
       VIRTUAL_PORT: $VIRTUAL_PORT
       LETSENCRYPT_HOST: $VIRTUAL_HOST
       LETSENCRYPT_EMAIL: $LETSENCRYPT_EMAIL
-      LETSENCRYPT_TEST: 'true'
+      #LETSENCRYPT_TEST: 'true'
+
+  cp:
+    build: composer
+    container_name: ${COMPOSER_CONTAINER}
+    volumes:
+      - /srv/www/${VIRTUAL_HOST}/wp_content:/app/wp-content
+    command: composer install
 
 networks:
   default:

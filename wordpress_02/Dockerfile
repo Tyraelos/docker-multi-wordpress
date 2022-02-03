@@ -1,2 +1,2 @@
 FROM wordpress
-COPY wp-config.php /var/www/html
+#COPY wp-config.php /var/www/html
